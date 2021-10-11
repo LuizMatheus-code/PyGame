@@ -14,7 +14,7 @@ class Frog(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (128*3, 64*3))
 
         self.rect = self.image.get_rect()
-        self.rect.topleft = 100, 100
+        self.rect.topleft = 200, 210
 
         self.animation = False
 
@@ -50,6 +50,9 @@ pygame.display.set_caption('Frog sprite')
 
 clock = pygame.time.Clock()
 
+background_image = pygame.image.load('pixel_city_background.png').convert()
+background_image = pygame.transform.scale(background_image, (width, length))
+
 while True:
     clock.tick(30)
     screen.fill(black_color)
@@ -60,6 +63,7 @@ while True:
         if event.type == KEYDOWN:
             animated_frog.attack_now()
     
+    screen.blit(background_image, (0, 0))
     all_sprites.draw(screen)
     all_sprites.update()
     pygame.display.flip()
